@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useCartContext } from '../context/CartContext';
 import CartElement from './CartElement';
+import { useCartContext } from '../../context/CartContext';
 
 const ProductCard = ({ el }) => {
     const [cartError, setCartError] = useState(false);
@@ -67,7 +67,7 @@ const ProductCard = ({ el }) => {
                 mx-6 my-2 drop-shadow-md pb-4 relative hover:scale-105 ease-in-out duration-300'
         >
             <img
-                src='./src/assets/fruits.png'
+                src='/src/assets/fruits.png'
                 alt='placeholder image for fruits'
             />
             <div className='order-1 h-full flex flex-col justify-evenly mt-4 mr-8 '>

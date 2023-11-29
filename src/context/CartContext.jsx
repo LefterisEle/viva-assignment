@@ -15,8 +15,8 @@ const Provider = ({ children }) => {
         const filteredCart = cart.filter(
             (product) => product.productID === newItem.productID
         );
-        if (filteredCart.length > 7) {
-            throw new Error('The limit is 8 products');
+        if (filteredCart.length > 6) {
+            throw new Error('The limit is 7 products');
         }
         const updatedCart = [...cart, newItem];
         setCart(updatedCart);
