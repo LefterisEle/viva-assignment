@@ -85,7 +85,7 @@ const ProductCard = ({ el }) => {
                     }`}
                     style={{ display: cartError ? 'block' : 'none' }}
                 >
-                    The limit is 8 products
+                    Reached the limit
                 </div>
             </div>
             <div className='absolute top-0 right-0 flex flex-col items-end gap-1 text-primary'>
