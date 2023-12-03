@@ -1,5 +1,5 @@
+import React, { Suspense } from 'react';
 import IndexPage, { loader as indexPageLoader } from './pages/IndexPage';
-import CheckoutPage from './pages/CheckoutPage';
 import {
     RouterProvider,
     createBrowserRouter,
@@ -7,15 +7,39 @@ import {
     Route,
 } from 'react-router-dom';
 import Layout from './components/Layout';
-import NotFound from './components/NotFound';
-import Error from './components/Error';
+
+const LazyCheckoutPage = React.lazy(() => import('./pages/CheckoutPage'));
+const LazyNotFound = React.lazy(() => import('./components/NotFound'));
+const LazyError = React.lazy(() => import('./components/Error'));
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path='/' element={<Layout />} errorElement={<Error />}>
+        <Route
+            path='/'
+            element={<Layout />}
+            errorElement={
+                <Suspense fallback='Loading...'>
+                    <LazyError />
+                </Suspense>
+            }
+        >
             <Route index element={<IndexPage />} loader={indexPageLoader} />
-            <Route path='checkout' element={<CheckoutPage />} />
-            <Route path='*' element={<NotFound />} />
+            <Route
+                path='checkout'
+                element={
+                    <Suspense fallback='Loading...'>
+                        <LazyCheckoutPage />
+                    </Suspense>
+                }
+            />
+            <Route
+                path='*'
+                element={
+                    <Suspense fallback='Loading...'>
+                        <LazyNotFound />
+                    </Suspense>
+                }
+            />
         </Route>
     )
 );
